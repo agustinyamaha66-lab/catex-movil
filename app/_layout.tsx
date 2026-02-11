@@ -8,16 +8,13 @@ export default function RootLayout() {
 
   useEffect(() => {
     initNotifications();
-    const unsubscribe = addNotificationResponseListener(async (data) => {
+    const unsubscribe = addNotificationResponseListener(async () => {
       const patente = await AsyncStorage.getItem("patente_sesion");
       if (!patente || !patente.trim()) {
         router.replace("/login");
         return;
       }
-
-      const target = data?.target;
-      if (target === "ruta") router.replace("/(tabs)/ruta");
-      else router.replace("/(tabs)/chat");
+      router.replace("/(tabs)/chat");
     });
 
     return unsubscribe;

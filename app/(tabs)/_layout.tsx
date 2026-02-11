@@ -139,7 +139,7 @@ function FloatingMenu({
       {
         translateY: anim.interpolate({
           inputRange: [0, 1],
-          outputRange: [12, 0],
+          outputRange: [-8, 0],
         }),
       },
       {
@@ -152,7 +152,7 @@ function FloatingMenu({
   };
 
   return (
-    <View style={styles.menuContainer} pointerEvents="box-none">
+    <View style={styles.menuContainer}>
       {open && <Pressable style={styles.menuBackdrop} onPress={() => setMenuOpen(false)} />}
 
       <Animated.View
@@ -195,9 +195,10 @@ function FloatingMenu({
 const styles = StyleSheet.create({
   menuContainer: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: "flex-end",
+    justifyContent: "flex-start",
     alignItems: "flex-end",
-    padding: 18,
+    paddingHorizontal: 16,
+    paddingTop: 54,
   },
   menuBackdrop: {
     ...StyleSheet.absoluteFillObject,
@@ -205,8 +206,8 @@ const styles = StyleSheet.create({
   },
   menuCard: {
     position: "absolute",
-    right: 18,
-    bottom: 86,
+    right: 16,
+    top: 110,
     width: 220,
     backgroundColor: Brand.colors.surface,
     borderRadius: Brand.radius.lg,
@@ -248,9 +249,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 14,
   },
   fab: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: Brand.colors.primary,
     alignItems: "center",
     justifyContent: "center",
