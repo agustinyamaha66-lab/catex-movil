@@ -1,112 +1,127 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Brand } from "../../constants/brand";
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
-
-export default function TabTwoScreen() {
+export default function ExploreScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
-        </ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <View style={styles.screen}>
+      <View style={styles.orbOne} />
+      <View style={styles.orbTwo} />
+      <ScrollView contentContainerStyle={styles.content}>
+        <View style={styles.header}>
+          <Text style={styles.kicker}>Centro de ayuda</Text>
+          <Text style={styles.title}>Operación diaria</Text>
+          <Text style={styles.subtitle}>
+            Guía rápida para completar rutas, comunicarte con central y confirmar devoluciones.
+          </Text>
+        </View>
+
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="navigate-outline" size={18} color={Brand.colors.primary} />
+            <Text style={styles.cardTitle}>Ruta</Text>
+          </View>
+          <Text style={styles.cardText}>Revisa tus vueltas y registra los hitos en orden.</Text>
+          <Text style={styles.cardItem}>- Marca llegada, salida y fin en cada vuelta.</Text>
+          <Text style={styles.cardItem}>
+            - Inicia la siguiente vuelta solo cuando el fin esté registrado.
+          </Text>
+        </View>
+
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="chatbubbles-outline" size={18} color={Brand.colors.accent} />
+            <Text style={styles.cardTitle}>Chat con central</Text>
+          </View>
+          <Text style={styles.cardText}>Envía mensajes y evidencia fotográfica cuando sea necesario.</Text>
+          <Text style={styles.cardItem}>
+            - Usa el clip para adjuntar una foto desde cámara o galería.
+          </Text>
+          <Text style={styles.cardItem}>- Mantén la patente activa para recibir respuestas.</Text>
+        </View>
+
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="cube-outline" size={18} color={Brand.colors.warning} />
+            <Text style={styles.cardTitle}>Devoluciones</Text>
+          </View>
+          <Text style={styles.cardText}>Confirma el Identificador Ruta con evidencia fotográfica.</Text>
+          <Text style={styles.cardItem}>- Máximo 5 fotos por ruta.</Text>
+          <Text style={styles.cardItem}>- Verifica que el manifiesto sea legible.</Text>
+        </View>
+
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="shield-checkmark-outline" size={18} color={Brand.colors.success} />
+            <Text style={styles.cardTitle}>Buenas prácticas</Text>
+          </View>
+          <Text style={styles.cardText}>
+            Mantén datos y evidencias consistentes para evitar reprocesos.
+          </Text>
+          <Text style={styles.cardItem}>- Activa ubicación y permisos antes de salir.</Text>
+          <Text style={styles.cardItem}>- Notifica incidencias por chat lo antes posible.</Text>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
+  screen: { flex: 1, backgroundColor: Brand.colors.background },
+  content: { padding: 20, paddingBottom: 40 },
+  orbOne: {
+    position: "absolute",
+    width: 260,
+    height: 260,
+    borderRadius: 130,
+    backgroundColor: Brand.colors.primarySoft,
+    top: -90,
+    right: -120,
+    opacity: 0.6,
+  },
+  orbTwo: {
+    position: "absolute",
+    width: 220,
+    height: 220,
+    borderRadius: 110,
+    backgroundColor: Brand.colors.accentSoft,
     bottom: -90,
-    left: -35,
-    position: 'absolute',
+    left: -90,
+    opacity: 0.6,
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  header: { marginBottom: 18 },
+  kicker: {
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    color: Brand.colors.muted,
+    fontSize: 11,
+    fontFamily: Brand.fonts.label,
   },
+  title: {
+    marginTop: 6,
+    fontSize: 24,
+    color: Brand.colors.ink,
+    fontFamily: Brand.fonts.display,
+  },
+  subtitle: {
+    marginTop: 8,
+    fontSize: 14,
+    color: Brand.colors.muted,
+    lineHeight: 20,
+    fontFamily: Brand.fonts.body,
+  },
+  card: {
+    backgroundColor: Brand.colors.surface,
+    borderRadius: Brand.radius.lg,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: Brand.colors.border,
+    marginBottom: 14,
+    ...Brand.shadow.card,
+  },
+  cardHeader: { flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 8 },
+  cardTitle: { fontSize: 16, color: Brand.colors.ink, fontFamily: Brand.fonts.label },
+  cardText: { color: Brand.colors.inkSoft, fontFamily: Brand.fonts.body, marginBottom: 8 },
+  cardItem: { color: Brand.colors.muted, fontFamily: Brand.fonts.body, marginBottom: 4 },
 });
